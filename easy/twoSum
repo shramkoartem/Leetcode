@@ -1,0 +1,27 @@
+ # class Solution:
+ #      """
+ #      Brute Force 
+ #      Time: O(n2)
+ #      Space: O(1)
+ #      """
+ #     def twoSum(self, nums: List[int], target: int) -> List[int]:
+ #         for i in range(len(nums)-1):
+ #             for j in range(i+1, len(nums)):
+ #                 if nums[i] + nums[j] == target:
+ #                     return [i,j]
+
+class Solution:
+    """
+    Two-pass Hash Table
+    Time: O(n)
+    Space: O(n)
+    """
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        htab = {}
+        for i in range(len(nums)):
+            htab[nums[i]] = i
+        
+        for i in range(len(nums)):
+            complement = target - nums[i]
+            if complement in htab and htab[complement] != i:
+                return [i,htab[complement]]
